@@ -1,17 +1,17 @@
-# 1. Use official Playwright image (includes browsers)
-FROM mcr.microsoft.com/playwright:v1.47.0-jammy
+# Use the latest Playwright base image
+FROM mcr.microsoft.com/playwright:v1.55.0-noble
 
-# 2. Set working directory
+# Set working directory
 WORKDIR /app
 
-# 3. Copy package.json & lock file first for caching
+# Copy package.json and package-lock.json first for caching
 COPY package*.json ./
 
-# 4. Install dependencies
+# Install dependencies
 RUN npm install
 
-# 5. Copy everything else
+# Copy all files
 COPY . .
 
-# 6. Run tests (Hello World)
+# Run Playwright tests by default
 CMD ["npx", "playwright", "test"]
